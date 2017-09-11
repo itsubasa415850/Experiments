@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<digester-rules>
+  <pattern value="lineItemMapping">
+	  <object-create-rule classname="cn.com.nttdata.xbrl.mapping.LineItemMappingBean" />
+	  <bean-property-setter-rule pattern="vendorName" propertyname="vendorName"/>
+	  <pattern value="lineItemMappingSet">
+		  <object-create-rule classname="cn.com.nttdata.xbrl.mapping.LineItemMappingSet" />
+		  <bean-property-setter-rule pattern="nodeDataId" propertyname="nodeDataId"/>
+		  <bean-property-setter-rule pattern="nodeDataHash" propertyname="nodeDataHash"/>
+		  <bean-property-setter-rule pattern="code" propertyname="code"/>
+		  <bean-property-setter-rule pattern="nodeDataPeriodType" propertyname="nodeDataPeriodType"/>
+		  <pattern value="label">
+		    <object-create-rule classname="cn.com.nttdata.xbrl.mapping.LabelBean" />
+		    <bean-property-setter-rule pattern="lang" propertyname="lang"/>
+		    <bean-property-setter-rule pattern="value" propertyname="value"/>
+		    <set-next-rule methodname="addLabel"/>
+		  </pattern>
+		  <set-next-rule methodname="addLineItemMappingSet"/>
+	  </pattern>
+	  <set-next-rule methodname="setLineItemMapping"/>
+  </pattern>
+
+</digester-rules>

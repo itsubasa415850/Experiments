@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<digester-rules>
+  <pattern value="nodeData">
+  <call-method-rule methodname="addMapping" pattern="nodeData"/>
+  <set-properties-rule />
+    <pattern value="nodeSet">
+      <object-create-rule classname="cn.com.nttdata.xbrl.mapping.NodeDataBean" />
+      <bean-property-setter-rule pattern="nodeDataId" propertyname="nodeDataId"/>
+      <bean-property-setter-rule pattern="LBType" propertyname="lbType"/>
+      <bean-property-setter-rule pattern="ELR" propertyname="elr"/>
+      <bean-property-setter-rule pattern="elementId" propertyname="elementId"/>
+      <bean-property-setter-rule pattern="parentNodeDataId" propertyname="parentNodeDataId"/>
+      <bean-property-setter-rule pattern="nodeDataHash" propertyname="nodeDataHash"/>
+      <bean-property-setter-rule pattern="parentNodeDataHash" propertyname="parentNodeDataHash"/>
+      <bean-property-setter-rule pattern="use" propertyname="use"/>
+      <bean-property-setter-rule pattern="priority" propertyname="priority"/>
+      <bean-property-setter-rule pattern="order" propertyname="order"/>
+      <bean-property-setter-rule pattern="preferredLabel" propertyname="preferredLabel"/>
+      <bean-property-setter-rule pattern="abstractFlag" propertyname="abstractFlag"/>
+      <bean-property-setter-rule pattern="tupleFlag" propertyname="tupleFlag"/>
+      <bean-property-setter-rule pattern="nillableFlag" propertyname="nillableFlag"/>
+      <bean-property-setter-rule pattern="type" propertyname="elementType"/>
+      <bean-property-setter-rule pattern="substitutionGroup" propertyname="substitutionGroup"/>
+      <bean-property-setter-rule pattern="periodType" propertyname="periodType"/>
+      <bean-property-setter-rule pattern="balance" propertyname="balance"/>
+      <pattern value="hypercube">
+        <object-create-rule classname="cn.com.nttdata.xbrl.mapping.HyperCubeBean"/>
+          <pattern value="explicitMember">
+            <object-create-rule classname="cn.com.nttdata.xbrl.mapping.ExplicitMemberBean" />
+            <bean-property-setter-rule pattern="dimension" propertyname="dimension"/>
+            <bean-property-setter-rule pattern="domainMember" propertyname="domainMember"/>
+            <set-next-rule methodname="addExpliciteMember"/>
+          </pattern>
+          <set-next-rule methodname="setHypercube" />
+      </pattern>
+      <set-next-rule methodname="addMapping" />
+    </pattern>
+  </pattern>
+</digester-rules>

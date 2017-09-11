@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<digester-rules>
+    <pattern value="unitData">
+        <call-method-rule methodname="addMapping" pattern="unitData"/>
+        <set-properties-rule />
+        <pattern value="unitSet">
+            <object-create-rule classname="cn.com.nttdata.xbrl.mapping.UnitDataBean" />
+            <bean-property-setter-rule pattern="unitDataId" propertyname="unitDataId"/>
+            <call-method-rule pattern="numeratorMeasure" methodname="addNumeratorMeaures" paramcount="1" />
+            <call-param-rule pattern="numeratorMeasure" paramnumber="0"/>
+            <call-method-rule pattern="denominatorMeasure" methodname="addDenominatorMeasures" paramcount="1" />
+            <call-param-rule pattern="denominatorMeasure" paramnumber="0"/>
+            <set-next-rule methodname="addMapping" />
+        </pattern>
+    </pattern>
+</digester-rules>
